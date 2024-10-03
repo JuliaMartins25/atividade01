@@ -1,0 +1,17 @@
+{
+  "name": "atividade-01",
+  "version": "1.0.0",
+  "description": "Projeto para resoluçãoda atividade proposta pelo instrutuor Felipe Dev aletório",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "SENAI",
+    "back-end",
+    "Javascript",
+    "Node.js"
+  ],
+  "author": "Julia Martins",
+  "license": "MIT"
+}
