@@ -4,7 +4,7 @@ const candidatosRoutes = Router()
 
 let candidatos = [
    {
-    id: Math.random() * 1000000,
+    id: Math.floor(Math.random() * 1000000),
     nome: "Capitã Lucimara",
     partido: "PSD",
     idade: 42,
@@ -24,15 +24,37 @@ candidatosRoutes.get("/", (req, res) => {
 
 //Rota para criar uma nova emoção
 candidatosRoutes.post("/", (req, res) => {
-    const { nome, cor } = req.body
-    const novaEmocao = {
-        id: candidatos.length + 1,
-        nome: nome,
-        cor: cor,
-    }
-    candidatos.push(novaEmocao)
-    return res.status(201).send(candidatos)
-})
+    const {nome, partido, idade, segundo, propostas} = req.body
+
+// validação dos campos nome e partido
+if (!nome || !partido) {
+    return res.status(400).send({
+        message: "O nome ou o partido não foi preenchido!",
+    });
+}
+
+// Validação de idade
+if (idade < 18) {
+    return res.status(400).send({
+        message: "O candidato não possui idade suficiente para participar desse debate",
+    });
+}
+ const novoCandidato = {
+    id: Math.floor(Math.random() * 1000000),
+    nome,
+    partido,
+    idade,
+    segundo,
+    propostas
+}
+
+    candidatos.push(novoCandidato)
+
+    return res.status(201).json({
+        message: "Candidato cadastrado!",
+        novoCandidato,
+    })
+});
 
 //Rota para buscar uma emoção pelo id
 candidatosRoutes.get("/:id", (req, res) => {
