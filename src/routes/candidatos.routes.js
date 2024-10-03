@@ -61,36 +61,36 @@ candidatosRoutes.get("/:id", (req, res) => {
     const {id} = req.params;
 
 //console.log(id);
-const emocao = candidatos.find((emotion) => emotion.id == id )
+const candidato = candidatos.find((politico) => politico.id == id );
 
-    if (!emocao){
+    if (!candidato){
         return res.status(404).send({
-            message: "Emoção não encontrando",
+            message: "Candidato não encontrando",
         });
     }
 
     return res.status(200).send({
-        message: "Emoção encontrada",
-        emocao,
+        message: "Candidato encontrada",
+        candidato,
     })
 })
 
 candidatosRoutes.put("/:id", (req, res) => {
     const { id } = req.params;
 
-    const emocao = candidatos.find((emotion) => emotion.id == id);
-    if (!emocao){
+    const candidato = candidatos.find((emotion) => emotion.id == id);
+    if (!candidato){
         return res.status(404).send({
             message: "Emoção não encontrando",
         });
     }
     const { nome, cor } = req.body
-    emocao.nome = nome;
-    emocao.cor = cor;
+    candidato.nome = nome;
+    candidato.cor = cor;
 
     return res.status(200).send({
         message: "Emoção atualizada!",
-        emocao,
+        candidato,
     })
 });
 
@@ -98,8 +98,8 @@ candidatosRoutes.put("/:id", (req, res) => {
 candidatosRoutes.delete("/:id", (req, res) => {
     const { id } = req.params;
 
-    const emocao = candidatos.find((emotion) => emotion.id == id);
-    if (!emocao){
+    const candidato = candidatos.find((emotion) => emotion.id == id);
+    if (!candidato){
         return res.status(404).send({
             message: "Emoção não encontrando",
         });
@@ -109,7 +109,7 @@ candidatosRoutes.delete("/:id", (req, res) => {
 
     return res.status(200).send({
         message: "Emoção deletada",
-        emocao,
+        candidato,
     });
 });
 
